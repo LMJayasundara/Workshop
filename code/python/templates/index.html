@@ -1,0 +1,30 @@
+{% extends "head.html" %}
+{% block body %}
+<script type="text/javascript">
+  setInterval(update_values, 1000);
+
+  function update_values() {
+      $.getJSON($SCRIPT_ROOT + '/_stuff',
+               
+      function(data) {
+        console.log(data);
+        $('#temp').text(data.temp);
+        $('#hum').text(data.hum);
+        $('#pre').text(data.pre);
+      });
+};
+</script>
+
+<body onload="update_values();">
+
+    <h3><span id="temp">0</span></h3>
+    <p>Temperature</p>
+
+    <h3><span id="hum">0</span></h3>
+    <p>Humidity</p>
+
+    <h3><span id="pre">0</span> </h3>
+    <p>Pressure</p>
+
+</body>
+{% endblock %}
